@@ -20,7 +20,7 @@ public class Population implements Runnable{
     public void setNeighbors(MoveOptions moveOptions,int  x, int y) {
         OrganismMap organismMap = Game.getInstance().organismMap;
         for (int j = 0; j < moveOptions.list.size(); j++) {
-            commonMoveRes.add(((OrganismField) organismMap.get()[x + moveOptions.list.get(j)[0]][y + moveOptions.list.get(j)[1]]).population[0]);
+            commonMoveRes.add(organismMap.get()[x + moveOptions.list.get(j)[0]][y + moveOptions.list.get(j)[1]].population[0]);
         }
     }
     // animals only will move on location, other action in OrganismField class.
@@ -63,7 +63,7 @@ public class Population implements Runnable{
         Population population;
         String str;
         for (int i = 0; i < commonMoveRes.size(); i++) {
-            stringBuilder.append(((Object) commonMoveRes.get(i)).toString() + "<BR>");
+            stringBuilder.append(commonMoveRes.get(i).toString() + "<BR>");
         }
 
         return stringBuilder.append("</HTML>").toString();

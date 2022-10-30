@@ -13,15 +13,18 @@ public class OrganismMap extends AbstractMap {
         super(OrganismField.class);
         setBorder();
     }
+    public OrganismField[][] get(){
+        return (OrganismField[][])super.get();
+    }
     public void unitPopulation(){
         CountryMap countryMap = Game.getInstance().countryMap;
         OrganismMap organismMap = Game.getInstance().organismMap;
         for (int y = 1; y < countryMap.get()[0].length-1; y++) {
             for (int x = 1; x < countryMap.get().length-1; x++) {
-                ((OrganismField)get()[x][y]).population[0].
+                get()[x][y].population[0].
                         setNeighbors(((CountryField)countryMap.get()[x][y])
                                 .moveOptions[0], x, y);
-                        createRandomAnimal((OrganismField)organismMap.get()[x][y], new CloneList());
+                        createRandomAnimal(organismMap.get()[x][y], new CloneList());
             }
         }
     }
@@ -41,20 +44,20 @@ public class OrganismMap extends AbstractMap {
             }
     public void setBorder(){
         for (int x = 0; x < get().length; x++) {
-            ((OrganismField)get()[x][0]).population = null;
-           ((OrganismField)get()[x][get()[0].length - 1]).population = null;
+            get()[x][0].population = null;
+           get()[x][get()[0].length - 1].population = null;
 
       }
       for (int y = 1; y < get()[0].length - 1; y++) {
-          ((OrganismField)get()[0][y]).population = null;
-           ((OrganismField)get()[get().length - 1][y]).population = null;
+          get()[0][y].population = null;
+           get()[get().length - 1][y].population = null;
        }
    }
     public void unitCommonRes() {
         OrganismMap organismMap = Game.getInstance().organismMap;
         for (int y = 1; y < organismMap.get()[0].length-1; y++) {
             for (int x = 1; x < organismMap.get().length-1; x++) {
-                ((OrganismField)get()[x][y]).population[0].atomicCommonRes = new CommonRes((((OrganismField)get()[x][y]).population[0]).commonMoveRes);
+                get()[x][y].population[0].atomicCommonRes = new CommonRes((get()[x][y].population[0]).commonMoveRes);
 
             }
         }

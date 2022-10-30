@@ -5,7 +5,6 @@ import entity.MoveOptions;
 
 public class CountryField extends AbstractField{
     private Territory territory;
-    int[] environmentalСonditions;
     public MoveArray[] moveArrays = new MoveArray[4];
     public MoveOptions[] moveOptions = new MoveOptions[4];
     //TODO take length in Characteristic

@@ -12,32 +12,34 @@ public class CountryMap extends AbstractMap {
         setBorder();
         setMoveArr();
     }
+    public CountryField[][] get(){
+        return (CountryField[][]) super.get();
+    }
     @Override
     public String toString() {
-        String str = "";
-        return str;
+        return "";
     }
     public void setBorder() {
         for (int x = 0; x < get().length; x++) {
-            ((CountryField) get()[x][0]).setTerritory(Territory.WATER);
-            ((CountryField) get()[x][0]).moveArrays = null;
-            ((CountryField) get()[x][get()[0].length - 1]).setTerritory(Territory.WATER);
-            ((CountryField) get()[x][get()[0].length - 1]).moveArrays = null;
+            get()[x][0].setTerritory(Territory.WATER);
+            get()[x][0].moveArrays = null;
+            get()[x][get()[0].length - 1].setTerritory(Territory.WATER);
+            get()[x][get()[0].length - 1].moveArrays = null;
         }
         for (int y = 1; y < get()[0].length - 1; y++) {
-            ((CountryField) get()[0][y]).setTerritory(Territory.WATER);
-            ((CountryField) get()[0][y]).moveArrays = null;
-            ((CountryField) get()[get().length - 1][y]).setTerritory(Territory.WATER);
-            ((CountryField) get()[get().length - 1][y]).moveArrays = null;
+            get()[0][y].setTerritory(Territory.WATER);
+            get()[0][y].moveArrays = null;
+            get()[get().length - 1][y].setTerritory(Territory.WATER);
+            get()[get().length - 1][y].moveArrays = null;
         }
     }
     public void setMoveArr() {
         for (int y = 1; y < get()[0].length-1; y++) {
             for (int x = 1; x < get().length-1; x++) {
-                for (int i = 0; i < ((CountryField)get()[x][y]).moveArrays.length; i++) {
-                    ((CountryField) get()[x][y]).moveArrays[i] = new MoveArray(i+1);
-                    setNeighbors(((CountryField) get()[x][y]).moveArrays[i], x, y);
-                    ((CountryField) get()[x][y]).moveOptions[i] = new MoveOptions(((CountryField) get()[x][y]).moveArrays[i]);
+                for (int i = 0; i < get()[x][y].moveArrays.length; i++) {
+                    get()[x][y].moveArrays[i] = new MoveArray(i+1);
+                    setNeighbors(get()[x][y].moveArrays[i], x, y);
+                    get()[x][y].moveOptions[i] = new MoveOptions(get()[x][y].moveArrays[i]);
                 }
 
             }
@@ -57,7 +59,7 @@ public class CountryMap extends AbstractMap {
             for (int x = 0; x < moveArray.value[y].length; x++) {
                 fieldIsExist = xMap - deltaX + x >= 0 && xMap - deltaX + x<get().length
                         && yMap - deltaY + y >=0 && yMap - deltaY  + y<get()[0].length;
-                if(fieldIsExist&&((CountryField)get()[xMap - deltaX + x][yMap - deltaY + y]).getTerritory()==Territory.EARTH){
+                if(fieldIsExist&& get()[xMap - deltaX + x][yMap - deltaY + y].getTerritory()==Territory.EARTH){
                     moveArray.value[y][x] = new CanMove(x-deltaX,-deltaY+y,true);
                 }
             }

@@ -7,6 +7,8 @@ public class StatisticMap extends AbstractMap{
 
     //@Override
     public void initialize() {
-
+    }
+    public StatisticField[][] get() {
+        return (StatisticField[][])super.get();
     }
 }
