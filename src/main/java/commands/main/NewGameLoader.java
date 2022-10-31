@@ -1,6 +1,8 @@
 package commands.main;
 
+import controllers.GameController;
 import gameobject.map.layerdmap.Game;
+import gameobject.map.layerdmap.GameMap;
 import gameobject.map.layerdmap.OrganismField;
 import swing.components.viewport.FieldPanel;
 import swing.components.viewport.ViewportPanel;
@@ -12,14 +14,11 @@ public class NewGameLoader extends AbstractLoader implements Action {
 
     @Override
     public void execute() {
-        changeView(new ViewportPanel(new FieldPanel()));
-       Thread thread = new Thread(Game.getInstance());
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        thread.start();
+        int x = 5;
+        int y = 6;
+        Game game = new Game(new GameController(), new GameMap(x, y));
+        changeView(new ViewportPanel(new FieldPanel(game.gameMap)));
+
     }
 }
 /*

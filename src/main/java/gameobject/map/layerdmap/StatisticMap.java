@@ -1,8 +1,8 @@
 package gameobject.map.layerdmap;
 
 public class StatisticMap extends AbstractMap{
-    public StatisticMap() {
-        super(StatisticField.class);
+    public StatisticMap(GameMap gameMap) {
+        super(StatisticField.class,  gameMap);
     }
 
     //@Override

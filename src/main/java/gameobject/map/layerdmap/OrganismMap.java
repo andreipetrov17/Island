@@ -2,6 +2,7 @@ package gameobject.map.layerdmap;
 
 import constants.CloneList;
 import entity.CommonRes;
+import entity.Population;
 import gameobject.animal.AbstractAnimal;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -9,22 +10,26 @@ import java.util.concurrent.ThreadLocalRandom;
 public class OrganismMap extends AbstractMap {
     private final CloneList clones = new CloneList();
 
-    public OrganismMap() {
-        super(OrganismField.class);
-        setBorder();
+    public OrganismMap(GameMap gameMap) {
+        super(OrganismField.class, gameMap);
     }
     public OrganismField[][] get(){
         return (OrganismField[][])super.get();
     }
+    protected void unit(){
+        unitPopulation();
+    }
     public void unitPopulation(){
-        CountryMap countryMap = Game.getInstance().countryMap;
-        OrganismMap organismMap = Game.getInstance().organismMap;
-        for (int y = 1; y < countryMap.get()[0].length-1; y++) {
-            for (int x = 1; x < countryMap.get().length-1; x++) {
-                get()[x][y].population[0].
-                        setNeighbors(((CountryField)countryMap.get()[x][y])
-                                .moveOptions[0], x, y);
-                        createRandomAnimal(organismMap.get()[x][y], new CloneList());
+        for (int y = 0; y < gameMap.country.get()[0].length; y++) {
+            for (int x = 0; x < gameMap.country.get().length; x++) {
+                get()[x][y].population[0] = new Population(gameMap);
+                get()[x][y].population[0].setNeighbors(gameMap.country.get()[x][y].moveOptions[0], x, y);
+
+                 //  createRandomAnimal(get()[x][y], clones);
+               // get()[x][y].population[0].
+                 //       setNeighbors((gameMap.country.get()[x][y])
+                  //              .moveOptions[0], x, y);
+                  //      createRandomAnimal(get()[x][y], clones);
             }
         }
     }
@@ -42,19 +47,8 @@ public class OrganismMap extends AbstractMap {
                     }
                 }
             }
-    public void setBorder(){
-        for (int x = 0; x < get().length; x++) {
-            get()[x][0].population = null;
-           get()[x][get()[0].length - 1].population = null;
-
-      }
-      for (int y = 1; y < get()[0].length - 1; y++) {
-          get()[0][y].population = null;
-           get()[get().length - 1][y].population = null;
-       }
-   }
     public void unitCommonRes() {
-        OrganismMap organismMap = Game.getInstance().organismMap;
+        OrganismMap organismMap = gameMap.organisms;
         for (int y = 1; y < organismMap.get()[0].length-1; y++) {
             for (int x = 1; x < organismMap.get().length-1; x++) {
                 get()[x][y].population[0].atomicCommonRes = new CommonRes((get()[x][y].population[0]).commonMoveRes);
@@ -62,4 +56,6 @@ public class OrganismMap extends AbstractMap {
             }
         }
     }
+
+
 }

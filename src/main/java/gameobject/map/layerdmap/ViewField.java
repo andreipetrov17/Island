@@ -5,11 +5,12 @@ import java.awt.*;
 
 public class ViewField extends AbstractField{
     public JLabel label;
-    public ViewField(){
-            label = new JLabel("");
-            label.setPreferredSize(new Dimension(45,45));
-            label.setOpaque(true);
-            label.setBackground(Color.GRAY);
+    public ViewField(int x, int y){
+        super(x,y);
+        label = new JLabel("");
+        label.setPreferredSize(new Dimension(45,45));
+        label.setOpaque(true);
+        label.setBackground(Color.GRAY);
 
     }
     }

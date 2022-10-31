@@ -1,14 +1,13 @@
 package entity;
 
 import gameobject.animal.AbstractAnimal;
-import gameobject.map.layerdmap.Game;
-import gameobject.map.layerdmap.OrganismField;
-import gameobject.map.layerdmap.OrganismMap;
+import gameobject.map.layerdmap.*;
 
 import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Population implements Runnable{
+    private final GameMap gameMap;
     public ReentrantLock locker = new ReentrantLock();
     public ArrayList<Population>  commonMoveRes = new ArrayList<>();
     //only for init atomicCommonRes TODO remove
@@ -17,10 +16,12 @@ public class Population implements Runnable{
     public List<AbstractAnimal> willMove = new ArrayList<>();
     public List<AbstractAnimal> wasMoved = new ArrayList<>();
     public int capacity = 30;
+    public Population(GameMap gameMap){
+        this.gameMap = gameMap;
+    }
     public void setNeighbors(MoveOptions moveOptions,int  x, int y) {
-        OrganismMap organismMap = Game.getInstance().organismMap;
         for (int j = 0; j < moveOptions.list.size(); j++) {
-            commonMoveRes.add(organismMap.get()[x + moveOptions.list.get(j)[0]][y + moveOptions.list.get(j)[1]].population[0]);
+            commonMoveRes.add(gameMap.organisms.get()[x + moveOptions.list.get(j)[0]][y + moveOptions.list.get(j)[1]].population[0]);
         }
     }
     // animals only will move on location, other action in OrganismField class.

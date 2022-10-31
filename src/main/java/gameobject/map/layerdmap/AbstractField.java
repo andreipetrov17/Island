@@ -1,12 +1,13 @@
 package gameobject.map.layerdmap;
 
 public abstract class AbstractField{
-    public static int i = 0;
-    public int id;
-    public AbstractField(){
-        id = i;
-        i++;
+    private final int x;
+    private final int y;
+    protected AbstractField(int x, int y){
+        this.x = x;
+        this.y = y;
     }
+
 
 
 }

@@ -7,9 +7,10 @@ public class OrganismField extends AbstractField implements Runnable{
 
 
 
-    public OrganismField(){
-        population[0] = new Population();
-       // createRandomAnimal(new CloneList());
+
+
+    public OrganismField(int x, int y) {
+        super(x, y);
     }
 
     @Override

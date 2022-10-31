@@ -5,18 +5,18 @@ import garbage.AddFont;
 import java.awt.*;
 
 public class ViewMap extends AbstractMap{
-    public ViewMap() {
-        super(ViewField.class);
+    public ViewMap(GameMap gameMap) {
+        super(ViewField.class, gameMap);
     }
     public Font font;
     //@Override
-    public void initialize(OrganismMap organismMap, CountryMap countryMap) {
+    public void initialize() {
         for (int y = 0; y < get()[0].length; y++) {
             for (int x = 0; x < get().length; x++) {
-                String str = "!!!";
-                if (((CountryField) countryMap.get()[x][y]).getTerritory() != Territory.WATER) {
+                String str;
+                if (gameMap.country.get()[x][y].getTerritory() != Territory.WATER) {
 
-                    str = String.valueOf(((OrganismField) Game.getInstance().organismMap.get()[x][y]).population[0].willMove.size());
+                    str = String.valueOf(gameMap.organisms.get()[x][y].population[0].willMove.size());
 
                     ((ViewField) get()[x][y]).label.setBackground(Color.GRAY);
                     ((ViewField) get()[x][y]).label.setText((str));
@@ -28,12 +28,15 @@ public class ViewMap extends AbstractMap{
     public void repaintLabel(){
         for (int y = 1; y < get()[0].length-1; y++) {
             for (int x = 1; x < get().length-1; x++) {
-                String str = "!!!";
-                    str = String.valueOf(((OrganismField) Game.getInstance().organismMap.get()[x][y]).population[0].wasMoved.size());
+                String str;
+                    str = String.valueOf(gameMap.organisms.get()[x][y].population[0].wasMoved.size());
                     //str += ((OrganismField) Game.getInstance().organismMap.get()[x][y]).population[0];
                     ((ViewField) get()[x][y]).label.setText((str));
             }
         }
+    }
+    public ViewField[][] get(){
+        return (ViewField[][]) super.get();
     }
     public void setFont(){
         try {

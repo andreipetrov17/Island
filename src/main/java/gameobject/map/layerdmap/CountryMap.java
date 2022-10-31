@@ -1,16 +1,21 @@
 package gameobject.map.layerdmap;
 
+import constants.Characteristic;
 import constants.MoveArray;
 import entity.CanMove;
 import entity.MoveOptions;
 
+import java.util.ArrayList;
+
 
 public class CountryMap extends AbstractMap {
+    private MoveOptions[] moveOptions;
 
-    public CountryMap() {
-        super(CountryField.class);
-        setBorder();
-        setMoveArr();
+    public CountryMap(GameMap gameMap) {
+        super(CountryField.class, gameMap);
+    }
+    protected void init(){
+        unitMoveOptions();
     }
     public CountryField[][] get(){
         return (CountryField[][]) super.get();
@@ -18,6 +23,16 @@ public class CountryMap extends AbstractMap {
     @Override
     public String toString() {
         return "";
+    }
+    private void unitMoveOptions(){
+        int size;
+        ArrayList<Integer> list = new ArrayList<>();
+        for(Characteristic characteristic: Characteristic.values()){
+            list.add((int)Characteristic.getBaseCharacteristic(characteristic.name())[2]);
+            //max speed
+        }
+        size = list.stream().max(Integer::compare).get();
+        moveOptions = new MoveOptions[size];
     }
     public void setBorder() {
         for (int x = 0; x < get().length; x++) {
