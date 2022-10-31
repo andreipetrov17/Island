@@ -11,6 +11,7 @@ public class CountryField extends AbstractField{
     public CountryField(int x, int y) {
         super(x, y);
         territory = Territory.EARTH;
+
     }
     public void setTerritory(Territory territory){
         this.territory = territory;
@@ -18,5 +19,8 @@ public class CountryField extends AbstractField{
 
     public Territory getTerritory() {
         return territory;
+    }
+    public void initMoveOptions(){
+
     }
 }

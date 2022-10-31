@@ -4,13 +4,13 @@ import garbage.AddFont;
 
 import java.awt.*;
 
-public class ViewMap extends AbstractMap{
+public class ViewMap extends AbstractMap implements Runnable{
     public ViewMap(GameMap gameMap) {
         super(ViewField.class, gameMap);
     }
     public Font font;
     //@Override
-    public void initialize() {
+    public void init() {
         for (int y = 0; y < get()[0].length; y++) {
             for (int x = 0; x < get().length; x++) {
                 String str;
@@ -18,10 +18,10 @@ public class ViewMap extends AbstractMap{
 
                     str = String.valueOf(gameMap.organisms.get()[x][y].population[0].willMove.size());
 
-                    ((ViewField) get()[x][y]).label.setBackground(Color.GRAY);
-                    ((ViewField) get()[x][y]).label.setText((str));
-                } else ((ViewField) get()[x][y]).label.setText(("WATER"));
-                ((ViewField) get()[x][y]).label.setBackground(Color.BLUE);
+                    get()[x][y].label.setBackground(Color.GRAY);
+                    get()[x][y].label.setText((str));
+                } else get()[x][y].label.setText(("WATER"));
+                get()[x][y].label.setBackground(Color.BLUE);
             }
         }
     }
@@ -31,7 +31,7 @@ public class ViewMap extends AbstractMap{
                 String str;
                     str = String.valueOf(gameMap.organisms.get()[x][y].population[0].wasMoved.size());
                     //str += ((OrganismField) Game.getInstance().organismMap.get()[x][y]).population[0];
-                    ((ViewField) get()[x][y]).label.setText((str));
+                    get()[x][y].label.setText((str));
             }
         }
     }
@@ -48,6 +48,22 @@ public class ViewMap extends AbstractMap{
         }
     }
 
+    @Override
+    public void run() {
+        for (int y = 0; y < get()[0].length; y++) {
+            for (int x = 0; x < get().length; x++) {
+                get()[x][y].label.setBackground(Color.BLACK);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                get()[x][y].label.revalidate();
+                System.out.println("!!!");
+            }
+
+        }
+    }
 }
  /*  //System.out.println(str);
                 setFont();

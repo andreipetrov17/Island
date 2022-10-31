@@ -11,10 +11,15 @@ public class Game implements Runnable {
     public Game(GameController gameController, GameMap gameMap) {
         this.gameController = gameController;
         this.gameMap = gameMap;
+        init();
     }
     protected void init(){
         gameMap.country.init();
         gameMap.organisms.unit();
+        gameMap.view.init();
+        Thread thread = new Thread(gameMap.view);
+        thread.start();
+
     }
 
 

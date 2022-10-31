@@ -7,21 +7,25 @@ import java.util.Arrays;
 
 public abstract class AbstractMap<E extends AbstractField> {
 
-        private final E[][] a;
+        private final E[][] value;
+        private final E[] arr;
         protected GameMap gameMap;
         public  AbstractMap(Class<E> clazz, GameMap gameMap) {
             this.gameMap = gameMap;
-            E[][] a = (E[][]) Array.newInstance(clazz, gameMap.getWidth(), gameMap.getHeight());
-            this.a = a;
+            E[][] value = (E[][]) Array.newInstance(clazz, gameMap.getWidth(), gameMap.getHeight());
+            E[] arr = (E[])Array.newInstance(clazz,gameMap.width*gameMap.height);
+            this.value = value;
+            this.arr = arr;
             Constructor constructor;
             Class[] types = new Class[2];
             types[0] = int.class;
             types[1] = int.class;
             try {
                 constructor = clazz.getConstructor(types);
-                for (int y = 0; y < a[0].length; y++) {
-                    for (int x = 0; x < a.length; x++) {
-                        a[x][y] = (E)constructor.newInstance(x, y);
+                for (int y = 0; y < value[0].length; y++) {
+                    for (int x = 0; x < value.length; x++) {
+                        value[x][y] = (E)constructor.newInstance(x, y);
+                        arr[x + y*value.length] = value[x][y];
                     }
                 }
             } catch (NoSuchMethodException | InstantiationException e) {
@@ -34,9 +38,9 @@ public abstract class AbstractMap<E extends AbstractField> {
         }
 
         public <E> E[][] get() {
-            return (E[][])a;
+            return (E[][])value;
+        }
         }
 
 
 
-}

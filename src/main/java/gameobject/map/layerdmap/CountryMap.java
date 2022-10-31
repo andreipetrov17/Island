@@ -15,6 +15,7 @@ public class CountryMap extends AbstractMap {
         super(CountryField.class, gameMap);
     }
     protected void init(){
+        setMoveArr();
         unitMoveOptions();
     }
     public CountryField[][] get(){
@@ -25,6 +26,7 @@ public class CountryMap extends AbstractMap {
         return "";
     }
     private void unitMoveOptions(){
+
         int size;
         ArrayList<Integer> list = new ArrayList<>();
         for(Characteristic characteristic: Characteristic.values()){
@@ -49,8 +51,8 @@ public class CountryMap extends AbstractMap {
         }
     }
     public void setMoveArr() {
-        for (int y = 1; y < get()[0].length-1; y++) {
-            for (int x = 1; x < get().length-1; x++) {
+        for (int y = 0; y < get()[0].length; y++) {
+            for (int x = 0; x < get().length; x++) {
                 for (int i = 0; i < get()[x][y].moveArrays.length; i++) {
                     get()[x][y].moveArrays[i] = new MoveArray(i+1);
                     setNeighbors(get()[x][y].moveArrays[i], x, y);
