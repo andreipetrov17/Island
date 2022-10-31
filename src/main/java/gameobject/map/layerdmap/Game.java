@@ -19,35 +19,35 @@ public class Game implements Runnable {
         gameMap.country.init();
         gameMap.organisms.unit();
         gameMap.view.init();
-        Thread thread = new Thread(gameMap.view);
-        thread.start();
-        Thread thread1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(6000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                Arrays.stream(gameMap.view.getArr()).forEach(viewField -> {
-                    viewField.label.setBackground(Color.RED);
-                    viewField.label.revalidate();
-                    System.out.println(viewField.getX() + ":" + viewField.getY());
-                    try {
-                        Thread.sleep(300);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                } );
-            }
-        });
-        try {
-            thread1.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        thread1.start();
+//        Thread thread = new Thread(gameMap.view);
+//        thread.start();
+//        Thread thread1 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(6000);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+//                Arrays.stream(gameMap.view.getArr()).forEach(viewField -> {
+//                    viewField.label.setBackground(Color.RED);
+//                    viewField.label.revalidate();
+//                    System.out.println(viewField.getX() + ":" + viewField.getY());
+//                    try {
+//                        Thread.sleep(300);
+//                    } catch (InterruptedException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//
+//                } );
+//            }
+//        });
+//        try {
+//            thread1.join();
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        thread1.start();
     }
 
 

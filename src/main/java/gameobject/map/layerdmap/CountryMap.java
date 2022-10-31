@@ -6,9 +6,10 @@ import entity.CanMove;
 import entity.MoveOptions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
-public class CountryMap extends AbstractMap {
+public class CountryMap extends AbstractMap<CountryField> {
     private MoveOptions[] moveOptions;
 
     public CountryMap(GameMap gameMap) {
@@ -20,10 +21,10 @@ public class CountryMap extends AbstractMap {
         unitMoveOptions();
     }
     public CountryField[][] get(){
-        return (CountryField[][]) super.get();
+        return super.get();
     }
     public CountryField[] getArr(){
-        return (CountryField[]) super.getArr();
+        return super.getArr();
     }
     @Override
     public String toString() {
@@ -44,10 +45,12 @@ public class CountryMap extends AbstractMap {
             get()[x][0].setTerritory(Territory.WATER);
             get()[x][get()[0].length - 1].setTerritory(Territory.WATER);
         }
-        for (int y = 1; y < get()[0].length - 1; y++) {
+        for (int y = 1; y < get()[0].length ; y++) {
             get()[0][y].setTerritory(Territory.WATER);
             get()[get().length - 1][y].setTerritory(Territory.WATER);
         }
+//        Arrays.stream(getArr()).filter(countryField -> countryField.getX() == 0 ||
+//                                                        countryField.getX() == gameMap.width -1 ||).forEach(gameMap.view.);
     }
     public void setMoveArr() {
         for (int y = 0; y < get()[0].length; y++) {

@@ -3,7 +3,6 @@ package gameobject.map.layerdmap;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 
 public abstract class AbstractMap<E extends AbstractField> {
 
@@ -17,7 +16,7 @@ public abstract class AbstractMap<E extends AbstractField> {
         E[] arr = (E[]) Array.newInstance(clazz, gameMap.width * gameMap.height);
         this.value = value;
         this.arr = arr;
-        Constructor constructor;
+        Constructor<E> constructor;
         Class[] types = new Class[2];
         types[0] = int.class;
         types[1] = int.class;
@@ -25,25 +24,21 @@ public abstract class AbstractMap<E extends AbstractField> {
             constructor = clazz.getConstructor(types);
             for (int y = 0; y < value[0].length; y++) {
                 for (int x = 0; x < value.length; x++) {
-                    value[x][y] = (E) constructor.newInstance(x, y);
+                    value[x][y] = constructor.newInstance(x, y);
                     arr[x + y * value.length] = value[x][y];
                 }
             }
-        } catch (NoSuchMethodException | InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
+        } catch (NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public <E> E[][] get() {
-        return (E[][]) value;
+    public E[][] get() {
+        return value;
     }
 
-    public <E> E[]getArr(){
-        return (E[])arr;
+    public E[]getArr(){
+        return arr;
     }
 }
 

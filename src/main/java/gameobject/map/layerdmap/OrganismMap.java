@@ -8,14 +8,14 @@ import gameobject.animal.AbstractAnimal;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class OrganismMap extends AbstractMap {
+public class OrganismMap extends AbstractMap<OrganismField> {
     private final CloneList clones = new CloneList();
 
     public OrganismMap(GameMap gameMap) {
         super(OrganismField.class, gameMap);
     }
     public OrganismField[][] get(){
-        return (OrganismField[][])super.get();
+        return super.get();
     }
     protected void unit(){
         unitPopulation();

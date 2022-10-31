@@ -1,4 +1,4 @@
-package entity;
+package garbage;
 
 import constants.Characteristic;
 import constants.CloneList;
