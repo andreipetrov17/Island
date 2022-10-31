@@ -5,6 +5,7 @@ import entity.CommonRes;
 import entity.Population;
 import gameobject.animal.AbstractAnimal;
 
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class OrganismMap extends AbstractMap {
@@ -20,19 +21,15 @@ public class OrganismMap extends AbstractMap {
         unitPopulation();
     }
     public void unitPopulation(){
-        for (int y = 0; y < gameMap.country.get()[0].length; y++) {
-            for (int x = 0; x < gameMap.country.get().length; x++) {
-                get()[x][y].population[0] = new Population(gameMap);
-                get()[x][y].population[0].setNeighbors(gameMap.country.get()[x][y].moveOptions[0], x, y);
-
-                 //  createRandomAnimal(get()[x][y], clones);
-               // get()[x][y].population[0].
-                 //       setNeighbors((gameMap.country.get()[x][y])
-                  //              .moveOptions[0], x, y);
-                  //      createRandomAnimal(get()[x][y], clones);
-            }
-        }
+        Arrays.stream(gameMap.country.getArr()).forEach(countryField -> {
+            int x = countryField.getX();
+            int y = countryField.getY();
+            get()[x][y].population[0] = new Population(gameMap);
+            get()[x][y].population[0].setNeighbors(gameMap.country.get()[x][y].moveOptions[0], x, y);
+        });
     }
+
+
     public void createRandomAnimal(OrganismField organismField, CloneList clones){
         int randomNum;
         AbstractAnimal clone;

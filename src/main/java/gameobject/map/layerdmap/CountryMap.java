@@ -15,11 +15,15 @@ public class CountryMap extends AbstractMap {
         super(CountryField.class, gameMap);
     }
     protected void init(){
+        setBorder();
         setMoveArr();
         unitMoveOptions();
     }
     public CountryField[][] get(){
         return (CountryField[][]) super.get();
+    }
+    public CountryField[] getArr(){
+        return (CountryField[]) super.getArr();
     }
     @Override
     public String toString() {
@@ -30,8 +34,7 @@ public class CountryMap extends AbstractMap {
         int size;
         ArrayList<Integer> list = new ArrayList<>();
         for(Characteristic characteristic: Characteristic.values()){
-            list.add((int)Characteristic.getBaseCharacteristic(characteristic.name())[2]);
-            //max speed
+            list.add((int)Characteristic.getBaseCharacteristic(characteristic.name())[2]); //max animal speed
         }
         size = list.stream().max(Integer::compare).get();
         moveOptions = new MoveOptions[size];
@@ -39,15 +42,11 @@ public class CountryMap extends AbstractMap {
     public void setBorder() {
         for (int x = 0; x < get().length; x++) {
             get()[x][0].setTerritory(Territory.WATER);
-            get()[x][0].moveArrays = null;
             get()[x][get()[0].length - 1].setTerritory(Territory.WATER);
-            get()[x][get()[0].length - 1].moveArrays = null;
         }
         for (int y = 1; y < get()[0].length - 1; y++) {
             get()[0][y].setTerritory(Territory.WATER);
-            get()[0][y].moveArrays = null;
             get()[get().length - 1][y].setTerritory(Territory.WATER);
-            get()[get().length - 1][y].moveArrays = null;
         }
     }
     public void setMoveArr() {
@@ -67,9 +66,7 @@ public class CountryMap extends AbstractMap {
         //
         boolean fieldIsExist;
         int deltaY = moveArray.demension;
-
         int deltaX;
-
         for (int y = 0; y < moveArray.value.length; y++) {
             if(moveArray.value[y].length == 1)deltaX = 0;
             else deltaX = (moveArray.value[y].length-1)/2;

@@ -25,13 +25,14 @@ public class Game implements Runnable {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(6000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
                 Arrays.stream(gameMap.view.getArr()).forEach(viewField -> {
                     viewField.label.setBackground(Color.RED);
                     viewField.label.revalidate();
+                    System.out.println(viewField.getX() + ":" + viewField.getY());
                     try {
                         Thread.sleep(300);
                     } catch (InterruptedException e) {

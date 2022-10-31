@@ -57,12 +57,12 @@ public class ViewMap extends AbstractMap implements Runnable{
             for (int x = 0; x < get().length; x++) {
                 get()[x][y].label.setBackground(Color.BLACK);
                 try {
-                    Thread.sleep(300);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
                 get()[x][y].label.revalidate();
-                System.out.println("!!!");
+                System.out.println(get()[x][y].getX() + "|" + get()[x][y].getY());
             }
 
         }
