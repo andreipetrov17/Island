@@ -38,6 +38,9 @@ public class ViewMap extends AbstractMap implements Runnable{
     public ViewField[][] get(){
         return (ViewField[][]) super.get();
     }
+    public ViewField[] getArr(){
+        return (ViewField[]) super.getArr();
+    }
     public void setFont(){
         try {
             if (this.font == null) {
@@ -54,7 +57,7 @@ public class ViewMap extends AbstractMap implements Runnable{
             for (int x = 0; x < get().length; x++) {
                 get()[x][y].label.setBackground(Color.BLACK);
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(300);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }

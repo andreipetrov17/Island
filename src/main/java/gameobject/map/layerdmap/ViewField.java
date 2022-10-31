@@ -13,5 +13,8 @@ public class ViewField extends AbstractField{
         label.setBackground(Color.GRAY);
 
     }
+    public void setText(String str){
+        label.setText(str);
+    }
     }
 
