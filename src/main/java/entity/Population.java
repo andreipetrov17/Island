@@ -21,8 +21,8 @@ public class Population implements Runnable{
     }
     public void setNeighbors(MoveOptions moveOptions,int  x, int y) {
         for (int j = 0; j < moveOptions.list.size(); j++) {
-            System.out.println(moveOptions);
-            commonMoveRes.add(gameMap.organisms.get()[x + moveOptions.list.get(j)[0]][y + moveOptions.list.get(j)[1]].population[0]);
+       // System.out.println(moveOptions);
+          commonMoveRes.add(gameMap.organisms.get()[x + moveOptions.list.get(j)[0]][y + moveOptions.list.get(j)[1]].population[0]);
         }
     }
     // animals only will move on location, other action in OrganismField class.

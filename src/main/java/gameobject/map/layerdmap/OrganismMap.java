@@ -16,15 +16,16 @@ public class OrganismMap extends AbstractMap<OrganismField> {
     }
 
     protected void unit(){
-       // unitPopulation();
+        unitPopulation();
     }
     public void unitPopulation(){
-        Arrays.stream(gameMap.country.getArr()).forEach(countryField -> {
+        Arrays.stream(gameMap.country.getArr()).
+                filter(countryField -> countryField.getTerritory()!= Territory.WATER)
+                .forEach(countryField -> {
             int x = countryField.getX();
             int y = countryField.getY();
             get()[x][y].population[0] = new Population(gameMap);
             get()[x][y].population[0].setNeighbors(countryField.moveOptions[0], x, y);
-            System.out.println(countryField.moveOptions[0]);
         });
     }
 

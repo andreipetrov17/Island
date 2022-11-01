@@ -11,9 +11,10 @@ public class ViewMap extends AbstractMap<ViewField> implements Runnable{
     public void init() {
         for (int y = 0; y < get()[0].length; y++) {
             for (int x = 0; x < get().length; x++) {
+                get()[x][y].setText(gameMap.country.get()[x][y].moveOptions.toString());
                 if (gameMap.country.get()[x][y].getTerritory() != Territory.WATER) {
                        get()[x][y].label.setBackground(Color.GRAY);
-                } else get()[x][y].label.setText(("WATER"));
+                } else //get()[x][y].label.setText(("WATER"));
                 get()[x][y].label.setBackground(Color.BLUE);
             }
         }

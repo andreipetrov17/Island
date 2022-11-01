@@ -47,8 +47,12 @@ public class CountryMap extends AbstractMap<CountryField> {
     private void unitMoveOptions() {
                 Arrays.stream(getArr()).forEach(countryField -> {
                     for (int i = 0; i < moveArrays.length; i++) {
-                        setNeighbors(moveArrays[i], countryField.getX(), countryField.getY());
-                        countryField.moveOptions[i] = new MoveOptions(moveArrays[i]);
+                        if(countryField.getTerritory()!=Territory.WATER) {
+                            setNeighbors(moveArrays[i], countryField.getX(), countryField.getY());
+                            System.out.println(moveArrays[i]);
+                            countryField.moveOptions[i] = new MoveOptions(moveArrays[i]);
+                            System.out.println(countryField.getX() + "|" + countryField.getY() + "\n" + countryField.moveOptions[i]);
+                        }
                     }
                 });
             }
