@@ -19,7 +19,7 @@ public class CountryMap extends AbstractMap<CountryField> {
     }
     protected void init(){
         setBorder();
-        initMoveArr();
+        //initMoveArr();
         unitMoveOptions();
     }
     private void initMoveArr() {
@@ -32,28 +32,39 @@ public class CountryMap extends AbstractMap<CountryField> {
         moveArrays = new MoveArray[size];
         for (int i = 0; i < size; i++) {
             moveArrays[i] = new MoveArray(i+1);
+            //System.out.println(moveArrays[i]);
         }
     }
     public void setBorder() {
         for (int x = 0; x < get().length; x++) {
             get()[x][0].setTerritory(Territory.WATER);
             get()[x][get()[0].length - 1].setTerritory(Territory.WATER);
+            gameMap.organisms.get()[x][0] = null;
+            gameMap.organisms.get()[x][get()[0].length - 1] = null;
         }
         for (int y = 1; y < get()[0].length-1 ; y++) {
             get()[0][y].setTerritory(Territory.WATER);
             get()[get().length - 1][y].setTerritory(Territory.WATER);
+            gameMap.organisms.get()[0][y] = null;
+            gameMap.organisms.get()[get().length - 1][y] = null;
         }
     }
     private void unitMoveOptions() {
+
                 Arrays.stream(getArr()).forEach(countryField -> {
-                    for (int i = 0; i < moveArrays.length; i++) {
+                    MoveArray moveArrayTemp;
+                   // for (int i = 0; i < moveArrays.length; i++) {
+                    int i =1;
                         if(countryField.getTerritory()!=Territory.WATER) {
-                            setNeighbors(moveArrays[i], countryField.getX(), countryField.getY());
-                            System.out.println(moveArrays[i]);
-                            countryField.moveOptions[i] = new MoveOptions(moveArrays[i]);
-                            System.out.println(countryField.getX() + "|" + countryField.getY() + "\n" + countryField.moveOptions[i]);
+                           // System.out.println(moveArrays[i]);
+                            moveArrayTemp = new MoveArray(2);
+                            setNeighbors(moveArrayTemp, countryField.getX(), countryField.getY());
+                            //System.out.println(moveArrays[i]);
+                           countryField.moveOptions[0] = new MoveOptions(moveArrayTemp);
+                           // System.out.println("!!!!!!!!!!!!!!!!!!");
+                            //System.out.println(countryField.getX() + "|" + countryField.getY() + "\n" + countryField.moveOptions[i]);
                         }
-                    }
+                    //}
                 });
             }
 
