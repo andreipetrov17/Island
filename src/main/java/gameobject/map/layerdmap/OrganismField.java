@@ -4,11 +4,6 @@ import entity.Population;
 
 public class OrganismField extends AbstractField implements Runnable{
     public Population[] population = new Population[1];
-
-
-
-
-
     public OrganismField(int x, int y) {
         super(x, y);
     }

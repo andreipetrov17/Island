@@ -14,8 +14,8 @@ public class NewGameLoader extends AbstractLoader implements Action {
 
     @Override
     public void execute() {
-        int x = 5;
-        int y = 6;
+        int x = 3;
+        int y = 4;
         Game game = new Game(new GameController(), new GameMap(x, y));
         changeView(new ViewportPanel(new FieldPanel(game.gameMap)));
 

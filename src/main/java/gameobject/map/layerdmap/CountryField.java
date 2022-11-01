@@ -6,6 +6,8 @@ import entity.MoveOptions;
 public class CountryField extends AbstractField{
     private Territory territory;
 
+    MoveOptions[] moveOptions = new MoveOptions[4];
+
     public CountryField(int x, int y) {
         super(x, y);
         territory = Territory.EARTH;

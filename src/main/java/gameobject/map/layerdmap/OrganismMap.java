@@ -14,18 +14,17 @@ public class OrganismMap extends AbstractMap<OrganismField> {
     public OrganismMap(GameMap gameMap) {
         super(OrganismField.class, gameMap);
     }
-    public OrganismField[][] get(){
-        return super.get();
-    }
+
     protected void unit(){
-        unitPopulation();
+       // unitPopulation();
     }
     public void unitPopulation(){
         Arrays.stream(gameMap.country.getArr()).forEach(countryField -> {
             int x = countryField.getX();
             int y = countryField.getY();
             get()[x][y].population[0] = new Population(gameMap);
-            get()[x][y].population[0].setNeighbors(gameMap.country.get()[x][y].moveOptions[0], x, y);
+            get()[x][y].population[0].setNeighbors(countryField.moveOptions[0], x, y);
+            System.out.println(countryField.moveOptions[0]);
         });
     }
 

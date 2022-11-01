@@ -18,14 +18,6 @@ public class ViewMap extends AbstractMap<ViewField> implements Runnable{
             }
         }
     }
-    public ViewField[][] get(){
-        return super.get();
-    }
-    public ViewField[] getArr(){
-        return super.getArr();
-    }
-
-
     @Override
     public void run() {
         for (int y = 0; y < get()[0].length; y++) {
