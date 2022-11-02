@@ -12,12 +12,14 @@ public abstract class AbstractMap<E extends AbstractField> {
 
     public AbstractMap(Class<E> clazz, GameMap gameMap) {
         this.gameMap = gameMap;
+        @SuppressWarnings("unchecked")
         E[][] value = (E[][]) Array.newInstance(clazz, gameMap.getWidth(), gameMap.getHeight());
+        @SuppressWarnings("unchecked")
         E[] arr = (E[]) Array.newInstance(clazz, gameMap.width * gameMap.height);
         this.value = value;
         this.arr = arr;
         Constructor<E> constructor;
-        Class[] types = new Class[2];
+        Class<?>[] types = new Class[2];
         types[0] = int.class;
         types[1] = int.class;
         try {

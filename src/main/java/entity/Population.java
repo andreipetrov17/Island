@@ -12,7 +12,7 @@ public class Population implements Runnable{
     public ArrayList<Population>  commonMoveRes = new ArrayList<>();
     //only for init atomicCommonRes TODO remove
     public CommonRes atomicCommonRes;
-    //Its can to lock all field atomari
+    //Its can to lock all field atomarick
     public List<AbstractAnimal> willMove = new ArrayList<>();
     public List<AbstractAnimal> wasMoved = new ArrayList<>();
     public int capacity = 30;
@@ -59,16 +59,16 @@ public class Population implements Runnable{
 
     }
 
-    public String totoString() {
-        StringBuilder stringBuilder = new StringBuilder("<HTML>Name"+ this +"<BR>" + "Neighbors:<BR>");
-        stringBuilder.append(commonMoveRes.size());
-        Population population;
-        String str;
-        for (int i = 0; i < commonMoveRes.size(); i++) {
-            //stringBuilder.append(commonMoveRes.get(i).toString() + "<BR>");
-        }
-
-        return stringBuilder.append("</HTML>").toString();
-    }
+//    public String totoString() {
+//        StringBuilder stringBuilder = new StringBuilder("<HTML>Name"+ this +"<BR>" + "Neighbors:<BR>");
+//        stringBuilder.append(commonMoveRes.size());
+//        Population population;
+//        String str;
+//        for (int i = 0; i < commonMoveRes.size(); i++) {
+//            //stringBuilder.append(commonMoveRes.get(i).toString() + "<BR>");
+//        }
+//
+//        return stringBuilder.append("</HTML>").toString();
+//    }
 }
 

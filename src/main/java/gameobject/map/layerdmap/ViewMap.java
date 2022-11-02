@@ -16,7 +16,7 @@ public class ViewMap extends AbstractMap<ViewField> implements Runnable{
     public void init() {
         Optional<Characteristic> optional = gameMap.statistic.state.entrySet()
                 .stream()
-                .filter(e -> e.getValue()!=true)
+                .filter(e -> !e.getValue())
                 .map(Map.Entry::getKey)
                 .findAny();
         Arrays.stream(gameMap.country.getArr())

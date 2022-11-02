@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class OrganismMap extends AbstractMap<OrganismField> {
-    private final CloneList clones = new CloneList();
+    //private final CloneList clones = new CloneList();
 
     public OrganismMap(GameMap gameMap) {
         super(OrganismField.class, gameMap);
@@ -18,6 +18,7 @@ public class OrganismMap extends AbstractMap<OrganismField> {
 
     protected void unit(){
         unitPopulation();
+        unitCommonRes();
     }
     public void unitPopulation(){
         Arrays.stream(gameMap.organisms.getArr()).forEach(e -> {
@@ -40,20 +41,20 @@ public class OrganismMap extends AbstractMap<OrganismField> {
     }
 
 
-    public void createRandomAnimal(OrganismField organismField, CloneList clones){
-        int randomNum;
-        AbstractAnimal clone;
-        ThreadLocalRandom random = ThreadLocalRandom.current();
-                randomNum = random.nextInt(10,30);
-                for (int i = 0; i < randomNum; i++) {
-                    try {
-                        clone = (AbstractAnimal)clones.arr[3].clone();
-                        organismField.population[0].willMove.add(clone);
-                    } catch (CloneNotSupportedException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
+//    public void createRandomAnimal(OrganismField organismField, CloneList clones){
+//        int randomNum;
+//        AbstractAnimal clone;
+//        ThreadLocalRandom random = ThreadLocalRandom.current();
+//                randomNum = random.nextInt(10,30);
+//                for (int i = 0; i < randomNum; i++) {
+//                    try {
+//                        clone = (AbstractAnimal)clones.arr[3].clone();
+//                        organismField.population[0].willMove.add(clone);
+//                    } catch (CloneNotSupportedException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                }
+//            }
     public void unitCommonRes() {
         OrganismMap organismMap = gameMap.organisms;
         for (int y = 1; y < organismMap.get()[0].length-1; y++) {
