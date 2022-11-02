@@ -10,7 +10,7 @@ public class ViewField extends AbstractField{
         label = new JLabel("");
         label.setPreferredSize(new Dimension(45,45));
         label.setOpaque(true);
-        label.setBackground(Color.GRAY);
+        label.setBackground(Color.BLUE);
 
     }
     public void setText(String str){
