@@ -19,11 +19,11 @@ public class Population implements Runnable{
     public Population(GameMap gameMap){
         this.gameMap = gameMap;
     }
-    public void setNeighbors(MoveOptions moveOptions,int  x, int y) {
+    public void setNeighbors(MoveOptions moveOptions,int  x, int y, int ordinal) {
         for (int j = 0; j < moveOptions.list.size(); j++) {
          commonMoveRes.add(gameMap.organisms
                  .get()[x + moveOptions.list.get(j)[0]]
-                 [y + moveOptions.list.get(j)[1]].population[1]);
+                 [y + moveOptions.list.get(j)[1]].population[ordinal]);
         }
     }
     @Override
@@ -65,7 +65,7 @@ public class Population implements Runnable{
         Population population;
         String str;
         for (int i = 0; i < commonMoveRes.size(); i++) {
-            stringBuilder.append(commonMoveRes.get(i).toString() + "<BR>");
+            //stringBuilder.append(commonMoveRes.get(i).toString() + "<BR>");
         }
 
         return stringBuilder.append("</HTML>").toString();

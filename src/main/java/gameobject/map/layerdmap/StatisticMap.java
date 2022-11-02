@@ -12,7 +12,7 @@ public class StatisticMap extends AbstractMap{
         for(Characteristic characteristic:Characteristic.values()){
             state.put(characteristic, false);
         }
-        state.put(Characteristic.BEAR, true);
+        state.put(Characteristic.GOAT, true);
     }
 
 

@@ -20,16 +20,21 @@ public class OrganismMap extends AbstractMap<OrganismField> {
         unitPopulation();
     }
     public void unitPopulation(){
+        Arrays.stream(gameMap.organisms.getArr()).forEach(e -> {
+            e.population = new Population[Characteristic.values().length];
+            for (int i = 0; i < e.population.length; i++) {
+                e.population[i] = new Population(gameMap);
+            }
+        });
         Arrays.stream(gameMap.country.getArr()).
-                filter(countryField -> countryField.getTerritory()!= Territory.WATER)
-                .forEach(countryField -> {
-            int x = countryField.getX();
-            int y = countryField.getY();
+                filter(e -> !e.getTerritory().equals(Territory.WATER))
+                .forEach(e -> {
+            int x = e.getX();
+            int y = e.getY();
             int maxSpeed;
                     for (int i = 0; i < get()[x][y].population.length; i++) {
                         maxSpeed = (int)Characteristic.getBaseCharacteristic(Characteristic.values()[i].name())[2];
-                        get()[x][y].population[i] = new Population(gameMap);
-                        get()[x][y].population[i].setNeighbors(countryField.moveOptions[maxSpeed], x, y);
+                        get()[x][y].population[i].setNeighbors(e.moveOptions[maxSpeed], x, y,i);
                     }
         });
     }

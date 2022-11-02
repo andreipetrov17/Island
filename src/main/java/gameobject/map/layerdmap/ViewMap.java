@@ -19,17 +19,17 @@ public class ViewMap extends AbstractMap<ViewField> implements Runnable{
                 .filter(e -> e.getValue()!=true)
                 .map(Map.Entry::getKey)
                 .findAny();
-        Arrays.stream(gameMap.country.getArr()).
-                filter(e -> e.getTerritory() != Territory.WATER)
+        Arrays.stream(gameMap.country.getArr())
+                .filter(e -> e.getTerritory() != Territory.WATER)
                 .forEach(e -> {
             int x = e.getX();
             int y = e.getY();
             get()[x][y].label.setBackground(Color.GRAY);
                     for (Characteristic characteristic: optional.stream().toList()) {
                         Population population = gameMap.organisms.get()[x][y].population[characteristic.ordinal()];
-                        get()[x][y].label.setText("!!!"
-                                + population.totoString() +"<BR>" +
-                                population.capacity);
+                        get()[x][y].label.setText("<HTML>" + population.toString() +"<BR>" + population.commonMoveRes.toString() +
+                                "<BR>" + gameMap.country.get()[x][y].moveOptions[3].toString() + "</HTML>");
+
                         get()[x][y].label.revalidate();
                     }
 
