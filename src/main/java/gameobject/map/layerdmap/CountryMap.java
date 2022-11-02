@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 public class CountryMap extends AbstractMap<CountryField> {
 
-    private MoveArray[] moveArrays;
+    //private MoveArray[] moveArrays;
 
 
     public CountryMap(GameMap gameMap) {
@@ -19,22 +19,20 @@ public class CountryMap extends AbstractMap<CountryField> {
     }
     protected void init(){
         setBorder();
-        //initMoveArr();
         unitMoveOptions();
     }
-    private void initMoveArr() {
-        int size;
-        ArrayList<Integer> list = new ArrayList<>();
-        for(Characteristic characteristic: Characteristic.values()){
-            list.add((int)Characteristic.getBaseCharacteristic(characteristic.name())[2]); //max animal speed
-        }
-        size = list.stream().max(Integer::compare).get();
-        moveArrays = new MoveArray[size];
-        for (int i = 0; i < size; i++) {
-            moveArrays[i] = new MoveArray(i+1);
-            //System.out.println(moveArrays[i]);
-        }
-    }
+//    private void initMoveArr() {
+//        int size;
+//        ArrayList<Integer> list = new ArrayList<>();
+//        for(Characteristic characteristic: Characteristic.values()){
+//            list.add((int)Characteristic.getBaseCharacteristic(characteristic.name())[2]); //max animal speed
+//        }
+//        size = list.stream().max(Integer::compare).get();
+//        moveArrays = new MoveArray[size];
+//        for (int i = 0; i < size; i++) {
+//            moveArrays[i] = new MoveArray(i+1);
+//        }
+//    }
     public void setBorder() {
         for (int x = 0; x < get().length; x++) {
             get()[x][0].setTerritory(Territory.WATER);
@@ -50,27 +48,20 @@ public class CountryMap extends AbstractMap<CountryField> {
         }
     }
     private void unitMoveOptions() {
-
                 Arrays.stream(getArr()).forEach(countryField -> {
                     MoveArray moveArrayTemp;
-                   // for (int i = 0; i < moveArrays.length; i++) {
-                    int i =1;
-                        if(countryField.getTerritory()!=Territory.WATER) {
-
-                            moveArrayTemp = new MoveArray(2);
-                            System.out.println(moveArrayTemp);
+                    for (int i = 0; i < 5; i++) {
+                        if (countryField.getTerritory() != Territory.WATER) {
+                            moveArrayTemp = new MoveArray(i);
                             setNeighbors(moveArrayTemp, countryField.getX(), countryField.getY());
-                            System.out.println(moveArrayTemp);
-                           countryField.moveOptions[0] = new MoveOptions(moveArrayTemp);
-                           // System.out.println("!!!!!!!!!!!!!!!!!!");
-                            //System.out.println(countryField.getX() + "|" + countryField.getY() + "\n" + countryField.moveOptions[i]);
+                            countryField.moveOptions[i] = new MoveOptions(moveArrayTemp);
                         }
-                    //}
+                    }
                 });
+
             }
 
     private void setNeighbors(MoveArray moveArray, int xMap, int yMap) {
-        //
         boolean fieldIsExist;
         int deltaY = moveArray.demension;
         int deltaX;

@@ -1,5 +1,6 @@
 package gameobject.map.layerdmap;
 
+import constants.Characteristic;
 import constants.CloneList;
 import entity.CommonRes;
 import entity.Population;
@@ -24,8 +25,12 @@ public class OrganismMap extends AbstractMap<OrganismField> {
                 .forEach(countryField -> {
             int x = countryField.getX();
             int y = countryField.getY();
-            get()[x][y].population[0] = new Population(gameMap);
-            get()[x][y].population[0].setNeighbors(countryField.moveOptions[0], x, y);
+            int maxSpeed;
+                    for (int i = 0; i < get()[x][y].population.length; i++) {
+                        maxSpeed = (int)Characteristic.getBaseCharacteristic(Characteristic.values()[i].name())[2];
+                        get()[x][y].population[i] = new Population(gameMap);
+                        get()[x][y].population[i].setNeighbors(countryField.moveOptions[maxSpeed], x, y);
+                    }
         });
     }
 

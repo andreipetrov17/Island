@@ -1,9 +1,10 @@
 package gameobject.map.layerdmap;
 
+import constants.Characteristic;
 import entity.Population;
 
 public class OrganismField extends AbstractField implements Runnable{
-    public Population[] population = new Population[1];
+    public Population[] population = new Population[Characteristic.values().length];
     public OrganismField(int x, int y) {
         super(x, y);
     }
