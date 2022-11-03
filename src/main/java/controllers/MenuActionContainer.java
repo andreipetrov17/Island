@@ -1,11 +1,10 @@
 package controllers;
 
 import commands.main.*;
-import swing.GameFrame;
 
 @SuppressWarnings("unused")
 public enum MenuActionContainer {
-    NEW(new NewGameLoader()),
+    TEST_INIT_FIELD(new TestUnitLoader()),
     LOAD(new MapEditorLoader()),
     SAVE(new SaveGameLoader()),
     SETTINGS(new SaveGameLoader()),

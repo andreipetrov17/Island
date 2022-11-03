@@ -3,10 +3,10 @@ package gameobject.map.layerdmap;
 public class GameMap {
     public final int width;
     public final int height;
-    protected final CountryMap country;
+    public final CountryMap country;
     public final OrganismMap organisms;
     public final ViewMap view;
-    protected final StatisticMap statistic;
+    public final StatisticMap statistic;
     public GameMap(int width, int height){
         this.width = width;
         this.height = height;

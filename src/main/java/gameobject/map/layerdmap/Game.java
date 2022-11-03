@@ -1,60 +1,30 @@
 package gameobject.map.layerdmap;
 
+import Functions.AbstractFunction;
 import controllers.GameController;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-public class Game implements Runnable {
+public class Game<T extends AbstractFunction>  {
     public final GameController gameController;
     public final GameMap gameMap;
+    private final T function;
 
-    public Game(GameController gameController, GameMap gameMap) {
+    public Game(GameController gameController, GameMap gameMap, T function) {
         this.gameController = gameController;
         this.gameMap = gameMap;
+        this.function = function;
+        function.gameMap = gameMap;
         init();
     }
-    protected void init(){
+    protected void init() {
         gameMap.country.init();
         gameMap.organisms.unit();
         gameMap.view.init();
-//        Thread thread = new Thread(gameMap.view);
-//        thread.start();
-//        Thread thread1 = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    Thread.sleep(6000);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-//                Arrays.stream(gameMap.view.getArr()).forEach(viewField -> {
-//                    viewField.label.setBackground(Color.RED);
-//                    viewField.label.revalidate();
-//                    System.out.println(viewField.getX() + ":" + viewField.getY());
-//                    try {
-//                        Thread.sleep(300);
-//                    } catch (InterruptedException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//
-//                } );
-//            }
-//        });
-//        try {
-//            thread1.join();
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//        thread1.start();
+        Thread thread = new Thread(function);
+        thread.start();
     }
 
 
 
 
-    @Override
-    public void run() {
-    }
 }
 
