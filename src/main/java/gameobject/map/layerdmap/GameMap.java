@@ -16,6 +16,7 @@ public class GameMap {
         statistic = new StatisticMap(this);
     }
 
+
     public int getWidth() {
         return width;
     }

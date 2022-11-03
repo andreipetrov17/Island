@@ -19,17 +19,16 @@ public class TestCommonRes extends AbstractFunction{
                 .stream()
                 .filter(e -> !e.getValue())
                 .map(Map.Entry::getKey)
-                .findAny();
+                .findFirst();
+
         Arrays.stream(gameMap.country.getArr())
                 .filter(e -> e.getTerritory() != Territory.WATER)
                 .forEach(e -> {
-                    int x = e.getX();
-                    int y = e.getY();
-                    gameMap.view.get()[x][y].label.setBackground(Color.GRAY);
+                    e.getIn(gameMap.view).label.setBackground(Color.GRAY);
                     for (Characteristic characteristic: optional.stream().toList()) {
-                        Population population = gameMap.organisms.get()[x][y].population[characteristic.ordinal()];
-                        gameMap.view.get()[x][y].label.setText("<HTML>" + population.toString() +"<BR>" + population.commonMoveRes.toString() +
-                                "<BR>" + gameMap.country.get()[x][y].moveOptions[3].toString() + "</HTML>");
+                        Population population = e.getIn(gameMap.organisms).population[characteristic.ordinal()];
+                        e.getIn(gameMap.view).label.setText("<HTML>" + population.toString() +"<BR>" + population.commonMoveRes.toString() +
+                                "<BR>" + e.getIn(gameMap.country).moveOptions[3].toString() + "</HTML>");
                     }
 
                 });

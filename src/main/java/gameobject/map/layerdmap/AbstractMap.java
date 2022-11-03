@@ -8,6 +8,7 @@ public abstract class AbstractMap<E extends AbstractField> {
 
     private final E[][] value;
     private final E[] arr;
+
     protected GameMap gameMap;
 
     public AbstractMap(Class<E> clazz, GameMap gameMap) {
@@ -42,6 +43,7 @@ public abstract class AbstractMap<E extends AbstractField> {
     public E[]getArr(){
         return arr;
     }
+
 }
 
 
