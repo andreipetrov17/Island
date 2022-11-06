@@ -8,7 +8,8 @@ public class ViewField extends AbstractField{
     public ViewField(int x, int y){
         super(x,y);
         label = new JLabel("");
-        label.setPreferredSize(new Dimension(45,45));
+        label.setMinimumSize(new Dimension(50,50));
+        label.setMaximumSize(new Dimension(100, 100));
         label.setOpaque(true);
         label.setBackground(Color.BLUE);
 

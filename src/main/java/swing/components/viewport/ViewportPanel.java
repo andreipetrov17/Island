@@ -1,5 +1,7 @@
 package swing.components.viewport;
 
+import swing.components.StatisticPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -8,17 +10,37 @@ import java.awt.event.MouseMotionAdapter;
 
 public class ViewportPanel extends JPanel {
     private FieldPanel fieldPanel;
+    private StatisticPanel statisticPanel = new StatisticPanel();
     private final JViewport viewport = new JViewport();
     private JPanel[] panels;
     private Thread scrollThread;
     public ViewportPanel(FieldPanel fieldPanel){
         this.fieldPanel = fieldPanel;
+        setPreferredSize(new Dimension(800,800));
+        JPanel centerPanel = new JPanel();
         setLayout(new BorderLayout());
         viewport.setView(fieldPanel);
         viewport.setScrollMode(JViewport.SIMPLE_SCROLL_MODE);
-        viewport.setLayout(new ViewportLayout());
-        add(viewport,BorderLayout.CENTER);
+
+        centerPanel.setLayout( new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        centerPanel.add(viewport, gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 0.3f;
+        gbc.weighty = 1.0;
+        centerPanel.add(statisticPanel, gbc);
+        add(centerPanel, BorderLayout.CENTER);
         setScrolls();
+
     }
     private void setScrolls(){
         ScrollPanelContainer[] scrollPanelContainer = ScrollPanelContainer.values();

@@ -42,12 +42,12 @@ public class TestCommonRes extends AbstractFunction{
                                 + characteristic.name() + "<BR>"
                                 + e.getIn(ply.organisms).population[characteristic.ordinal()].capacity + "<BR>"
                                 + population.toString() +"<BR>"
-                                + population.commonMoveRes.toString() + "<BR>"
+                                //+ population.commonMoveRes.toString() + "<BR>"
                                 + "<BR>" + e.getIn(ply.country).moveOptions[3].toString() + "</HTML>");
                                 labels.add(e.getIn(ply.view).label);
 
             try {
-                ply.view.blackLightLabel(Color.RED, labels.stream(), 2000);
+                ply.view.blackLightLabel(Color.RED, labels.stream(), 20);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
