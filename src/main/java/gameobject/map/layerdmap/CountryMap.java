@@ -1,11 +1,9 @@
 package gameobject.map.layerdmap;
 
-import constants.Characteristic;
 import constants.MoveArray;
 import entity.CanMove;
 import entity.MoveOptions;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -37,14 +35,14 @@ public class CountryMap extends AbstractMap<CountryField> {
         for (int x = 0; x < get().length; x++) {
             get()[x][0].setTerritory(Territory.WATER);
             get()[x][get()[0].length - 1].setTerritory(Territory.WATER);
-            gameMap.organisms.get()[x][0] = null;
-            gameMap.organisms.get()[x][get()[0].length - 1] = null;
+            ply.organisms.get()[x][0] = null;
+            ply.organisms.get()[x][get()[0].length - 1] = null;
         }
         for (int y = 1; y < get()[0].length-1 ; y++) {
             get()[0][y].setTerritory(Territory.WATER);
             get()[get().length - 1][y].setTerritory(Territory.WATER);
-            gameMap.organisms.get()[0][y] = null;
-            gameMap.organisms.get()[get().length - 1][y] = null;
+            ply.organisms.get()[0][y] = null;
+            ply.organisms.get()[get().length - 1][y] = null;
         }
     }
     private void unitMoveOptions() {

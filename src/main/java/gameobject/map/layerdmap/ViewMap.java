@@ -22,7 +22,7 @@ public class ViewMap extends AbstractMap<ViewField> {
 
     private void setOriginColor() {
         Arrays.stream(getArr()).forEach(e->{
-            if(e.getIn(gameMap.country).getTerritory()==Territory.WATER){
+            if(e.getIn(ply.country).getTerritory()==Territory.WATER){
                 e.label.setBackground(Color.BLUE);
             }
             else e.label.setBackground(Color.GRAY);

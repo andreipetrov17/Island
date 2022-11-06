@@ -9,10 +9,10 @@ public abstract class AbstractMap<E extends AbstractField> {
     private final E[][] value;
     private final E[] arr;
 
-    protected GameMap gameMap;
+    protected GameMap ply;
 
     public AbstractMap(Class<E> clazz, GameMap gameMap) {
-        this.gameMap = gameMap;
+        this.ply = gameMap;
         @SuppressWarnings("unchecked")
         E[][] value = (E[][]) Array.newInstance(clazz, gameMap.getWidth(), gameMap.getHeight());
         @SuppressWarnings("unchecked")

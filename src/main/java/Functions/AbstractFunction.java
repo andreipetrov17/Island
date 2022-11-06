@@ -1,12 +1,11 @@
 package Functions;
 
-import gameobject.map.layerdmap.Game;
 import gameobject.map.layerdmap.GameMap;
 
 import java.util.concurrent.Callable;
 
 public class AbstractFunction implements Runnable, Callable {
-    public GameMap gameMap;
+    public GameMap ply;
     public AbstractFunction(){
 
     }

@@ -13,11 +13,9 @@ public class TestUnitLoader extends AbstractLoader implements Action {
     }
     @Override
     public void execute() {
-        int x = 3;
-        int y = 4;
         Game<TestCommonRes> game;
-        game = new Game(new GameController(), new GameMap(x, y), new TestCommonRes());
-        changeView(new ViewportPanel(new FieldPanel(game.gameMap)));
+        game = new Game(new GameController(), new GameMap(3, 4), new TestCommonRes());
+        changeView(new ViewportPanel(new FieldPanel(game.ply)));
 
     }
 }

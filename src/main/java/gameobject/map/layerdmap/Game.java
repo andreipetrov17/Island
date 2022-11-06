@@ -5,20 +5,20 @@ import controllers.GameController;
 
 public class Game<T extends AbstractFunction>  {
     public final GameController gameController;
-    public final GameMap gameMap;
+    public final GameMap ply;
     private final T function;
 
     public Game(GameController gameController, GameMap gameMap, T function) {
         this.gameController = gameController;
-        this.gameMap = gameMap;
+        this.ply = gameMap;
         this.function = function;
-        function.gameMap = gameMap;
+        function.ply = gameMap;
         init();
     }
     protected void init() {
-        gameMap.country.init();
-        gameMap.organisms.unit();
-        gameMap.view.init();
+        ply.country.init();
+        ply.organisms.unit();
+        ply.view.init();
         Thread thread = new Thread(function);
         thread.start();
     }
