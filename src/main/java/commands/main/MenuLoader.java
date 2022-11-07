@@ -4,7 +4,7 @@ import commands.main.Action;
 import controllers.MainController;
 import swing.MainMenu;
 
-public class MenuLoader extends AbstractLoader implements Action {
+public class MenuLoader extends AbstractLoader{
     private MainController mainController;
     public MenuLoader(MainController mainController){
         this.mainController = mainController;

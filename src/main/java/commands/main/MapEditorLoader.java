@@ -5,7 +5,7 @@ import commands.main.Action;
 import javax.swing.*;
 import java.awt.*;
 
-public class MapEditorLoader extends AbstractLoader implements Action {
+public class MapEditorLoader extends AbstractLoader{
     @Override
     public void execute() {
         System.setProperty("file.encoding", "UTF-8");

@@ -1,12 +1,16 @@
 package swing.components;
 
+import controllers.GameController;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class StatisticPanel extends JPanel {
     JScrollPane scrollPane = new JScrollPane();
     JTextArea textArea = new JTextArea();
-    public StatisticPanel(){
+    private final GameController gameController;
+    public StatisticPanel(GameController gameController){
+        this.gameController = gameController;
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;

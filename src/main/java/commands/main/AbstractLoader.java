@@ -2,6 +2,6 @@ package commands.main;
 
 import controllers.MainController;
 
-public abstract class AbstractLoader {
+public abstract class AbstractLoader implements Action{
 
 }

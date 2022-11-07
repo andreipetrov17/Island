@@ -7,15 +7,16 @@ import gameobject.map.layerdmap.GameMap;
 import swing.components.viewport.FieldPanel;
 import swing.components.viewport.ViewportPanel;
 
-public class TestUnitLoader extends AbstractLoader implements Action {
+public class TestUnitLoader extends AbstractLoader {
     public TestUnitLoader(){
 
     }
     @Override
     public void execute() {
         Game<TestCommonRes> game;
-        game = new Game(new GameController(), new GameMap(3, 4), new TestCommonRes());
-        changeView((new ViewportPanel(new FieldPanel(game.ply))));
+        GameController gameController = new GameController();
+        game = new Game(gameController, new GameMap(30, 40), new TestCommonRes());
+        changeView((new ViewportPanel(new FieldPanel(game.ply), gameController)));
 
     }
 }

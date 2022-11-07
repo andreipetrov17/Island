@@ -3,7 +3,7 @@ package commands.main;
 import commands.main.Action;
 import swing.LoadGamePanel;
 
-public class OldGameLoader extends AbstractLoader implements Action {
+public class OldGameLoader extends AbstractLoader {
     public OldGameLoader(){
     }
 

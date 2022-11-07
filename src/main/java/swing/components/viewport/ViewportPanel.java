@@ -1,5 +1,6 @@
 package swing.components.viewport;
 
+import controllers.GameController;
 import swing.components.StatisticPanel;
 
 import javax.swing.*;
@@ -9,13 +10,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 public class ViewportPanel extends JPanel {
-    private FieldPanel fieldPanel;
-    private StatisticPanel statisticPanel = new StatisticPanel();
+    private final GameController gameController;
+    private final FieldPanel fieldPanel;
+    private final StatisticPanel statisticPanel;
     private final JViewport viewport = new JViewport();
-    private JPanel[] panels;
+    private  JPanel[] panels;
     private Thread scrollThread;
-    public ViewportPanel(FieldPanel fieldPanel){
+    public ViewportPanel(FieldPanel fieldPanel, GameController gameController){
         this.fieldPanel = fieldPanel;
+        this.gameController = gameController;
+        statisticPanel = new StatisticPanel(gameController);
         setPreferredSize(new Dimension(800,800));
         JPanel centerPanel = new JPanel();
         setLayout(new BorderLayout());
