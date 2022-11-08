@@ -1,6 +1,7 @@
 package Functions;
 
 import constants.Characteristic;
+import controllers.GameController;
 import entity.Population;
 import gameobject.map.layerdmap.Territory;
 
@@ -12,11 +13,21 @@ import java.util.Map;
 import java.util.Optional;
 
 public class TestCommonRes extends AbstractFunction{
-    public TestCommonRes(){
+    public TestCommonRes(GameController gameController){
+        super(gameController);
 
     }
     @Override
     public void run() {
+        endCycle.start();
+        try {
+            if(endCycle.isAlive()) {
+                Thread.currentThread().join();
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("пошла нить");
         Optional<Characteristic> optional = ply.statistic.state.entrySet()
                 .stream()
                 .filter(e -> !e.getValue())
@@ -29,10 +40,7 @@ public class TestCommonRes extends AbstractFunction{
         ply.view.revalidateAll();
     }
 
-    @Override
-    public String call() throws Exception {
-        return super.call();
-    }
+
     private void showCommonRes(Characteristic characteristic){
         ArrayList<JLabel> labels = new ArrayList<>();
         ply.organisms.habitPlace.forEach(e -> {

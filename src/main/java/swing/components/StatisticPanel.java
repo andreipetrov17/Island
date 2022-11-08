@@ -1,9 +1,12 @@
 package swing.components;
 
 import controllers.GameController;
+import swing.components.viewport.ViewportPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class StatisticPanel extends JPanel {
     JScrollPane scrollPane = new JScrollPane();
@@ -23,7 +26,16 @@ public class StatisticPanel extends JPanel {
         gbc.gridwidth = 1;
         add(new JLabel("статистика"), gbc);
         gbc.gridy = 1;
-        add(new JButton("!!!"), gbc);
+        JButton button = new JButton("!!!");
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameController.changeMode("run");
+                System.out.println("Режим поменен");
+                button.setBackground(Color.BLUE);
+            }
+        });
+        add(button, gbc);
         requestFocusInWindow();
         textArea.setMinimumSize(new Dimension(300, 300));
         textArea.setLineWrap(true);

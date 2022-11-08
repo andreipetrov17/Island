@@ -19,8 +19,8 @@ public enum MenuActionContainer {
     }
 
     public static Action get(String actionName){
-        Action action1 = performed(MenuActionContainer.valueOf(actionName.toUpperCase()));
-        return action1;
+        Action action = performed(MenuActionContainer.valueOf(actionName.toUpperCase()));
+        return action;
     }
     private static Action performed(MenuActionContainer actionContainer){
         actionContainer.isExist = true;

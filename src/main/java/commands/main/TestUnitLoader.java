@@ -15,7 +15,7 @@ public class TestUnitLoader extends AbstractLoader {
     public void execute() {
         Game<TestCommonRes> game;
         GameController gameController = new GameController();
-        game = new Game(gameController, new GameMap(30, 40), new TestCommonRes());
+        game = new Game(gameController, new GameMap(30, 40), new TestCommonRes(gameController));
         changeView((new ViewportPanel(new FieldPanel(game.ply), gameController)));
 
     }
