@@ -19,24 +19,36 @@ public class TestCommonRes extends AbstractFunction{
     }
     @Override
     public void run() {
-        endCycle.start();
+
+        Thread thread = getStopperCycle(500);
+        thread.run();
         try {
-            if(endCycle.isAlive()) {
-                Thread.currentThread().join();
-            }
+            thread.join();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
+
         System.out.println("пошла нить");
+
         Optional<Characteristic> optional = ply.statistic.state.entrySet()
                 .stream()
                 .filter(e -> !e.getValue())
                 .map(Map.Entry::getKey)
                 .findFirst();
-        //Stream<CountryField> countryFields = Arrays.stream(gameMap.country.getArr());
+
         Arrays.stream(ply.country.getArr())
                 .filter(e -> e.getTerritory() != Territory.WATER)
-                .forEach(e -> showCommonRes(optional.get()));
+                .forEach(e -> {
+                    Thread thread1 = getStopperCycle(500);
+                    thread1.run();
+                    try {
+                        thread1.join();
+                    } catch (InterruptedException qe) {
+                        throw new RuntimeException(qe);
+                    }
+                    showCommonRes(optional.get());
+                });
         ply.view.revalidateAll();
     }
 

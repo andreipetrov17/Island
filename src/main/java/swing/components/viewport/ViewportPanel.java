@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 public class ViewportPanel extends JPanel {
-    private final GameController gameController;
+    private  volatile GameController gameController;
     private final FieldPanel fieldPanel;
     private final StatisticPanel statisticPanel;
     private final JViewport viewport = new JViewport();

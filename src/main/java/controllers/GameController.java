@@ -7,7 +7,6 @@ import commands.game.GameStopper;
 import commands.main.AbstractLoader;
 
 public class GameController {
-    private Thread stopper;
     public AbstractGameAction currentMode = GameActionContainer.get("stop");
 
     public void changeMode(String str){
