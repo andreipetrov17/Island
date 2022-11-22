@@ -1,20 +1,19 @@
 package controllers;
 
 import commands.game.*;
-import commands.main.Action;
 
 public enum GameActionContainer {
-    RUN(new GameStarter(false, false)),
-    STOP(new GameStopper(true, true)),
-    NEXT_CYCLE(new CycleNext(true,false)),
-    NEXT_STEP(new StepNext(true, true));
-    AbstractGameAction action;
+    RUN(new StopAction(false, false)),
+    STOP(new StopAction(true, true)),
+    NEXT_CYCLE(new StopAction(true,false)),
+    NEXT_STEP(new StopAction(true, true));
+    StopAction action;
 
-    GameActionContainer(AbstractGameAction action){
+    GameActionContainer(StopAction action){
         this.action = action;
     }
-    public static AbstractGameAction get(String actionName){
-        AbstractGameAction action = GameActionContainer.valueOf(actionName.toUpperCase()).action;
+    public static StopAction get(String actionName){
+        StopAction action = GameActionContainer.valueOf(actionName.toUpperCase()).action;
         return action;
     }
 }

@@ -1,18 +1,14 @@
 package controllers;
 
-import commands.game.AbstractGameAction;
-import commands.game.CycleNext;
-import commands.game.GameAction;
-import commands.game.GameStopper;
-import commands.main.AbstractLoader;
+import commands.game.StopAction;
 
 public class GameController {
-    public AbstractGameAction currentMode = GameActionContainer.get("stop");
+    public StopAction currentMode = GameActionContainer.get("stop");
 
     public void changeMode(String str){
     currentMode =  GameActionContainer.get(str);
     }
-    public AbstractGameAction getMode(){
+    public StopAction getMode(){
         return currentMode;
     }
 }

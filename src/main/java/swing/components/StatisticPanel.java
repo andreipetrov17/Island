@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.io.PrintStream;
 
 public class StatisticPanel extends JPanel {
-    JScrollPane scrollPane = new JScrollPane();
+//    JScrollPane scrollPane = new JScrollPane();
     JTextArea textArea = new JTextArea();
     SwingOutput output = new SwingOutput(textArea);
     private final GameController gameController;
@@ -41,7 +41,9 @@ public class StatisticPanel extends JPanel {
         textArea.setLineWrap(true);
         textArea.setEditable(false);
         textArea.setOpaque(false);
+
 //        scrollPane.add(textArea);
+//        scrollPane.add(new JLabel("!!!!"));
 //        scrollPane.setOpaque(true);
 //        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         gbc.gridy = 2;
@@ -68,7 +70,7 @@ public class StatisticPanel extends JPanel {
                 JButton button = new JButton(icon);
                 button.addActionListener(e -> {
                     gameController.changeMode(name);
-                    System.out.println(gameController.getMode() + "!!!");
+                    System.out.println(gameController.getMode().toString());
                 });
                 button.setFocusable(false);
                 add(button,gbc);

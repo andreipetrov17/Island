@@ -1,9 +1,9 @@
 package commands.game;
 
-public abstract class AbstractGameAction implements GameAction{
+public class StopAction{
     private final boolean stopCycle;
     private final boolean stopNext;
-    public AbstractGameAction(boolean stopCycle, boolean stopNext){
+    public StopAction(boolean stopCycle, boolean stopNext){
         this.stopCycle = stopCycle;
         this.stopNext = stopNext;
     }
@@ -14,5 +14,9 @@ public abstract class AbstractGameAction implements GameAction{
 
     public boolean isStopNext() {
         return stopNext;
+    }
+    @Override
+    public String toString(){
+        return "stopCycle = " + stopCycle + ", stopNext = " + stopNext;
     }
 }

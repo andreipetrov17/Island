@@ -18,24 +18,39 @@ public abstract class AbstractFunction implements Runnable{
             while(gameController.getMode().isStopCycle()){
                 try {
                     Thread.sleep(sleep);
-                    System.out.println("Конец цикла");
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }
         });
     }
-    public Thread getStopperNext(int sleep){
+    public Thread getStopperStep(int sleep){
         return new Thread(() -> {
             while(gameController.getMode().isStopNext()){
                 try {
                     Thread.sleep(sleep);
-                    System.out.println("Конец хода");
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }
         });
     }
-
+    public void stopNextStep(){
+        Thread thread = getStopperStep(500);
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void stopNextCycle(){
+        Thread thread = getStopperCycle(500);
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
