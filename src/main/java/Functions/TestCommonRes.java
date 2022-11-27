@@ -20,10 +20,6 @@ public class TestCommonRes extends AbstractFunction{
     @Override
     public void run() {
         stopNextStep();
-
-
-        System.out.println("пошла нить");
-
         Optional<Characteristic> optional = ply.statistic.state.entrySet()
                 .stream()
                 .filter(e -> !e.getValue())
@@ -45,8 +41,7 @@ public class TestCommonRes extends AbstractFunction{
                     stopNextCycle();
                     e.getIn(ply.view).label.setBackground(Color.GRAY);
                         Population population = e.getIn(ply.organisms).population[characteristic.ordinal()];
-//            e.getIn(ply.view).label.setText
-            System.out.println("<HTML>"
+            e.getIn(ply.view).label.setText("<HTML>"
                                 + characteristic.name() + "<BR>"
                                 + e.getIn(ply.organisms).population[characteristic.ordinal()].capacity + "<BR>"
                                 + population.toString() +"<BR>"

@@ -1,6 +1,6 @@
 package commands.game;
 
-public class StopAction{
+public class StopAction implements Observer{
     private final boolean stopCycle;
     private final boolean stopNext;
     public StopAction(boolean stopCycle, boolean stopNext){
@@ -18,5 +18,10 @@ public class StopAction{
     @Override
     public String toString(){
         return "stopCycle = " + stopCycle + ", stopNext = " + stopNext;
+    }
+
+    @Override
+    public void update() {
+
     }
 }

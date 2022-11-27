@@ -69,8 +69,11 @@ public class StatisticPanel extends JPanel {
                 Icon icon = new ImageIcon(Icons.getResources(name));
                 JButton button = new JButton(icon);
                 button.addActionListener(e -> {
-                    gameController.changeMode(name);
-                    System.out.println(gameController.getMode().toString());
+                    new Thread(() -> {
+                        gameController.changeMode("run");
+                        gameController.changeMode(name);
+                        System.out.println(gameController.getMode().toString());
+                    }).start();
                 });
                 button.setFocusable(false);
                 add(button,gbc);

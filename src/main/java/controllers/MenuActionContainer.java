@@ -5,7 +5,7 @@ import commands.main.*;
 @SuppressWarnings("unused")
 public enum MenuActionContainer {
     TEST_INIT_FIELD(new TestUnitLoader()),
-    LOAD(new MapEditorLoader()),
+    TEST_FUNCTION_STOP(new TestStopLoader()),
     SAVE(new SaveGameLoader()),
     SETTINGS(new SaveGameLoader()),
     EXIT(new ExitLoader()),
